@@ -70,7 +70,12 @@ public class ConstantValue {
 	/**
 	 * 存储信息的xml文件位置
 	 */
-	public static final String XML_PATH = "resources\\AddressBook.xml";
+	public static final String XML_PATH1 = "resources\\AddressBook.xml";
+	
+	/**
+	 * 存储信息的xml文件位置
+	 */
+	public static final String XML_PATH2 = "AddressBook.xml";
 	
 	/**
 	 * 分隔符
@@ -81,4 +86,9 @@ public class ConstantValue {
 	 * 匹配所有字符的正则表达式
 	 */
 	public static final String REGEX = "[\\s\\S]*";
+	
+	/**
+	 * xml文件的基础内容
+	 */
+	public static final String XML_BASE_TEXT = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><addressBook></addressBook>";
 }

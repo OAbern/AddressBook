@@ -26,7 +26,7 @@ public class AddressDao {
 	 * @return
 	 */
 	public boolean add(Address address) {
-		Document document = documentDao.getDocument(ConstantValue.XML_PATH);
+		Document document = documentDao.getDocument(ConstantValue.XML_PATH2);
 		
 		//构造一个entry的结点
 		Element entry = document.createElement(ConstantValue.XML_NODE_NAME);
@@ -44,7 +44,7 @@ public class AddressDao {
 		
 		document.getElementsByTagName(ConstantValue.XML_ROOT_NAME).item(0).appendChild(entry);	//关联entry到addressBook
 		
-		return documentDao.write(document, ConstantValue.XML_PATH);		//持久化操作
+		return documentDao.write(document, ConstantValue.XML_PATH2);		//持久化操作
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class AddressDao {
 	 * @return
 	 */
 	public List<Address> search(String field, String value) {
-		Document document = documentDao.getDocument(ConstantValue.XML_PATH);
+		Document document = documentDao.getDocument(ConstantValue.XML_PATH2);
 		List<Address> list = new ArrayList<Address>();
 		
 		Node addressBook = document.getElementsByTagName(ConstantValue.XML_ROOT_NAME).item(0);		//获取根节点
@@ -74,11 +74,15 @@ public class AddressDao {
 				}
 			}
 			if(flag) {		//添加查找到的匹配的节点
-				String[] values = new String[nodeList.getLength()]; 
-				for(int j=0; j<nodeList.getLength(); j++) {		//遍历entry里节点的子节点
-					values[j] = nodeList.item(j).getTextContent();
+				String[] values = new String[3];
+				int index = 0;
+				for(int j=0; j<nodeList.getLength()&&index<3; j++) {		//遍历entry里节点的子节点
+					String string = nodeList.item(j).getTextContent();
+					if(!"".equals(string.trim())) {
+						values[index++] = string;
+					}
 				}
-				list.add(new Address(values[1], values[3], values[5]));
+				list.add(new Address(values[0], values[1], values[2]));
 			}
 		}
 		
@@ -92,7 +96,7 @@ public class AddressDao {
 	 * @return
 	 */
 	public int remove(String field, String value) {
-		Document document = documentDao.getDocument(ConstantValue.XML_PATH);
+		Document document = documentDao.getDocument(ConstantValue.XML_PATH2);
 		
 		int count = 0;
 		Node addressBook = document.getElementsByTagName(ConstantValue.XML_ROOT_NAME).item(0);		//获取根节点
@@ -113,7 +117,7 @@ public class AddressDao {
 			}
 		}
 		
-		documentDao.write(document, ConstantValue.XML_PATH);	//持久化操作
+		documentDao.write(document, ConstantValue.XML_PATH2);	//持久化操作
 		return count;
 	}
 	

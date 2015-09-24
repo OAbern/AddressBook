@@ -18,6 +18,8 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
+import com.bern.model.ConstantValue;
+
 /**
  * 操作document的类
  * @author Bern
@@ -32,13 +34,25 @@ public class DocumentDao {
 	 */
 	public Document getDocument(String path) {
 		File file = new File(path);
-		if(!file.exists()) {
+		if(!file.exists()) {		//如果文件不存在，则创建文件并初始化
+			FileOutputStream outputStream = null;
 			try {
 				file.createNewFile();
+				outputStream = new FileOutputStream(file);
+				outputStream.write(ConstantValue.XML_BASE_TEXT.getBytes());
 			} catch (IOException e) {
 				System.out.println("创建文件失败！path："+path);
+			} finally {
+				if(outputStream != null) {
+					try {
+						outputStream.close();
+					} catch (IOException e) {
+						System.out.println("创建文件失败！path："+path);
+					}
+				}
 			}
 		}
+		
 		Document document = null;
 		try {
 			document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
