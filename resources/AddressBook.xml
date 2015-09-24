@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><addressBook>
+	<entry>
+		<name>bern</name>
+		<mobile>188888888</mobile>
+		<address>你好</address>
+	</entry>
+	<entry>
+		<name>bern</name>
+		<mobile>188888888</mobile>
+		<address>你好</address>
+	</entry>
+	<entry>
+		<name>Test</name>
+		<mobile>12345678912</mobile>
+		<address>CQ</address>
+	</entry>
+	<entry>
+		<name>Test</name>
+		<mobile>12345678912</mobile>
+		<address>CQ</address>
+	</entry>
+	<entry>
+		<name>Test</name>
+		<mobile>12345678912</mobile>
+		<address>CQ</address>
+	</entry>
+	<entry>
+		<name>Test</name>
+		<mobile>12345678912</mobile>
+		<address>CQ</address>
+	</entry>
+</addressBook>
